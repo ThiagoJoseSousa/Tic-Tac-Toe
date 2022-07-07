@@ -306,11 +306,11 @@ const AIController = (() => {
                     simBoard[i] = markToPlay; // marks the array element
                     scores.push(minimax(nextMark,simBoard)) // recursive function with a condition of having empty spaces. And mark.
                 } 
-            } //scores.push executes the minimax 8 times and store it in scores
+            } //scores.push executes the minimax 9 times and store it in scores, It stores new array boards inside scores
             if(maximizing) { // return
-                return Math.max(...scores); // return the 1/0 boards
+                return Math.max(...scores); // return the 1 and 0 
             } else {
-                return Math.min(...scores); // return the -1/0 ones
+                return Math.min(...scores); // return the -1 and 0
             } 
         } //minimax algorithm
         const getBestMove= () => {
@@ -320,16 +320,16 @@ const AIController = (() => {
             const board=gameboard.getBoardContent();
             let highestValueMove;
             let lowestValueMove;
-            let highestScore = -99;  //this could be -infinite.
+            let highestScore = -99;  //this could be -infinite, getbestmove consists in returning an index.
             let lowestScore = 99 ;
-            for (let i=0; i<9;i++){
+            for (let i=0; i<9;i++){ // adds depth to minimax
                 if (board[i]==="") {
                     const simBoard=[...board];
                     simBoard[i]=markToPlay;
                     const score=minimax(nextMark,simBoard);
                     if (score>highestScore) { //chooses the minimum value between both
                         highestScore=score;
-                        highestValueMove=i; //and assigns the position that the lesser scored i It can have. (if isnt needed)
+                        highestValueMove=i; //and assigns the position that the lesser scored i It can have. ("if" isnt needed here)
                     }
                     if (score<lowestScore) {
                         lowestScore=score;
