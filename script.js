@@ -304,13 +304,13 @@ const AIController = (() => {
                 if (board[i]==="") {
                     const simBoard = [...board]; //sim means pc game
                     simBoard[i] = markToPlay; // marks the array element
-                    scores.push(minimax(nextMark,simBoard)) // recursive function with a condition of having empty spaces. And mark.
+                    scores.push(minimax(nextMark,simBoard)) // recursive function with a condition of having empty spaces. And mark. I think It loads possibilities and create an array for each endgame inside scores.
                 } 
-            } //scores.push executes the minimax 9 times and store it in scores, It stores new array boards inside scores
+            } 
             if(maximizing) { // return
-                return Math.max(...scores); // return the 1 and 0 
+                return Math.max(...scores);  
             } else {
-                return Math.min(...scores); // return the -1 and 0
+                return Math.min(...scores); 
             } 
         } //minimax algorithm
         const getBestMove= () => {
@@ -339,7 +339,7 @@ const AIController = (() => {
                 }
             }
             if (maximizing) {
-                return highestValueMove;
+                return highestValueMove; //after both loops are completed return the best path
             } else {
                 return lowestValueMove;
             }
