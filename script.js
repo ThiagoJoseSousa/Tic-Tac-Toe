@@ -306,11 +306,11 @@ const AIController = (() => {
                     simBoard[i] = markToPlay; // marks the array element
                     scores.push(minimax(nextMark,simBoard)) // recursive function with a condition of having empty spaces. And mark.
                 } 
-            } //scores.push adds one element, inside this element will be how many turns passed to end the game because it also has push(score) that returns the length
-            if(maximizing) { //scores has a great value now because many values were added to its length till i=8 or board i not empty
-                return Math.max(...scores); // 
+            } //scores.push executes the minimax 8 times and store it in scores
+            if(maximizing) { // return
+                return Math.max(...scores); // return the 1/0 boards
             } else {
-                return Math.min(...scores); // 
+                return Math.min(...scores); // return the -1/0 ones
             } 
         } //minimax algorithm
         const getBestMove= () => {
@@ -320,16 +320,16 @@ const AIController = (() => {
             const board=gameboard.getBoardContent();
             let highestValueMove;
             let lowestValueMove;
-            let highestScore = -99;  //minimax gives boards a value. -100 will be when a direct move wins the game
+            let highestScore = -99;  //this could be -infinite.
             let lowestScore = 99 ;
             for (let i=0; i<9;i++){
                 if (board[i]==="") {
                     const simBoard=[...board];
                     simBoard[i]=markToPlay;
-                    const score=minimax(nextMark,simBoard); 
-                    if (score>highestScore) { //
+                    const score=minimax(nextMark,simBoard);
+                    if (score>highestScore) { //chooses the minimum value between both
                         highestScore=score;
-                        highestValueMove=i;
+                        highestValueMove=i; //and assigns the position that the lesser scored i It can have. (if isnt needed)
                     }
                     if (score<lowestScore) {
                         lowestScore=score;
