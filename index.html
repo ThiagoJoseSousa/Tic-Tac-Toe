@@ -8,9 +8,47 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-    
-
-    <script src="script.js"></script> 
+    <main>
+        <div id="content-container">
+            <div id="game-container">
+                <div id="name-container">
+                    <div class="name-row">
+                        <span></span>
+                        <span>AI?</span>
+                    </div>
+                    <div class="name-row">
+                        <div>
+                            <button id="editNameP1" class="edit-button">&#9999;</button>
+                            <span id="nameP1"></span>
+                        </div>
+                        <div class="check-container">
+                            <input type="checkbox" id="AIP1">
+                        </div>
+                    </div>
+                    <div class="name-row">
+                            <div>
+                                <button id="editNameP2" class="edit-button">&#9999;</button>
+                                <span id="nameP2"></span>
+                            </div>
+                            <div class="check-container">
+                                <input type="checkbox" id="AIP2">
+                            </div>
+                    </div>
+                </div>
+                <div id="grid-container">
+                </div>
+                <div id="statusText" class="text"></div>
+                <div id="scoreTextP1" class="text"></div>
+                <div id="scoreTextP2" class="text"></div>
+                <div id="buttonRow">
+                    <button id="startButton">START</button>
+                    <button id="restartButton">RESTART</button>
+                    <button id="resetButton">RESET SCORE</button>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
+    <script src="script.js"></script> 
 
 </html>
