@@ -304,15 +304,15 @@ const AIController = (() => {
                 if (board[i]==="") {
                     const simBoard = [...board]; //sim means pc game
                     simBoard[i] = markToPlay; // marks the array element
-                    scores.push(minimax(nextMark,simBoard)) // recursive function with a condition of having empty spaces. And mark. I think It loads possibilities and create an array for each endgame inside scores.
+                    scores.push(minimax(nextMark,simBoard)) // recursive function with a condition of entering an ending state. When ended, `for` pushes first empty space score into scores, and goes to next i.
                 } 
             } 
-            if(maximizing) { // return
+            if(maximizing) { // returns the highest value. We just need 1 winboard, so max gets the first 1. Or first -1, or 0 board. 
                 return Math.max(...scores);  
             } else {
                 return Math.min(...scores); 
             } 
-        } //minimax algorithm
+        } 
         const getBestMove= () => {
             const markToPlay=gameController.getCurrentPlayer().getMark();
             const maximizing= (markToPlay==="X") ? true : false;
@@ -320,26 +320,27 @@ const AIController = (() => {
             const board=gameboard.getBoardContent();
             let highestValueMove;
             let lowestValueMove;
-            let highestScore = -99;  //this could be -infinite, getbestmove consists in returning an index.
+            let highestScore = -99;  //Its just a super low value
             let lowestScore = 99 ;
-            for (let i=0; i<9;i++){ // adds depth to minimax
+            for (let i=0; i<9;i++){
                 if (board[i]==="") {
                     const simBoard=[...board];
                     simBoard[i]=markToPlay;
                     const score=minimax(nextMark,simBoard);
-                    if (score>highestScore) { //chooses the minimum value between both
+                    if (score>highestScore) { //chooses the maximum value between both
                         highestScore=score;
-                        highestValueMove=i; //and assigns the position that the lesser scored i It can have. ("if" isnt needed here)
+                        highestValueMove=i; //and assigns the position that the greater scored i has.It`s done like this so only the first time a result appears, gets stored. ("if" isnt needed here)
                     }
                     if (score<lowestScore) {
                         lowestScore=score;
                         lowestValueMove=i;
                     }
-
+//the minimax algorithm needs to evaluate the best move in the moves array. It should choose the move with the highest score when AI is playing and the move with the lowest score when the human is playing.
+//Therefore, If the player is O, it gets a variable called lowestValue and loops through the board array, if a move has a higher score than highestScore, the algorithm stores that move. In case there are moves with similar score, only the first one will be stored.
                 }
             }
             if (maximizing) {
-                return highestValueMove; //after both loops are completed return the best path
+                return highestValueMove; //after both loops are completed return the best move index
             } else {
                 return lowestValueMove;
             }
